@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viaje Dauer | Sua próxima aventura começa aqui</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.2s ease;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#destinos">Destinos</a></li>
+                <li><a href="#passeios">Passeios</a></li>
+                <li><a href="#curiosidades">Dicas</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="inicio" class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');">
+        <h1>Viaje Dauer</h1>
+        <p class="subtitulo">Explore o mundo com experiências inesquecíveis</p>
+    </section>
+    <section id="destinos" class="personagens">
+        <h2>Destinos Populares</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Praia Brava - SC</h3>
+                <p>Um paraíso entre o mar e as montanhas. Ideal para quem busca tranquilidade e boa gastronomia.</p>
+            </div>
+            <div class="card">
+                <h3>Gramado - RS</h3>
+                <p>Encantos da Serra Gaúcha com clima europeu, chocolates artesanais e eventos o ano todo.</p>
+            </div>
+            <div class="card">
+                <h3>Foz do Iguaçu - PR</h3>
+                <p>As Cataratas mais impressionantes do mundo esperam por você. Aventura e natureza em um só lugar.</p>
+            </div>
+        </div>
+        <div id="map"></div>
+    </section>
+    <section id="passeios" class="personagens">
+        <h2>Passeios Imperdíveis</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Passeio de Barco</h3>
+                <p>Explore as águas cristalinas e aprecie o pôr do sol em um passeio inesquecível.</p>
+            </div>
+            <div class="card">
+                <h3>City Tour</h3>
+                <p>Descubra a história, cultura e gastronomia local com um guia especializado.</p>
+            </div>
+            <div class="card">
+                <h3>Trilhas e Natureza</h3>
+                <p>Para os aventureiros, caminhadas em meio à natureza com vistas deslumbrantes.</p>
+            </div>
+        </div>
+    </section>
+    <section id="curiosidades" class="curiosidades">
+        <h2>Dicas de Viagem</h2>
+        <ul>
+            <li>Reserve seus passeios com antecedência para garantir os melhores horários.</li>
+            <li>Leve sempre protetor solar, repelente e roupas leves para passeios ao ar livre.</li>
+            <li>Verifique a previsão do tempo antes de viajar e prepare-se para o clima local.</li>
+        </ul>
+    </section>
+    <footer id="contato">
+        <p>&copy; 2025 Viaje Dauer | Agência de Viagens Oficial</p>
+        <p>Siga-nos no Instagram: <a href="https://www.instagram.com/viajedauer" target="_blank" style="color: #ffcc00;">@viajedauer</a></p>
+    </footer>
+    <a href="https://wa.me/5547984123289" target="_blank" class="whatsapp-btn" title="Fale conosco no WhatsApp">💬</a>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-27.0, -50.0], 5.5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+        const destinos = [
+            { nome: "Praia Brava - SC", coords: [-26.9715, -48.6353] },
+            { nome: "Gramado - RS", coords: [-29.3733, -50.8761] },
+            { nome: "Foz do Iguaçu - PR", coords: [-25.5469, -54.5882] }
+        ];
+        destinos.forEach(dest => {
+            L.marker(dest.coords).addTo(map).bindPopup(`<b>${dest.nome}</b>`);
+        });
+    </script>
+</body>
+</html>
